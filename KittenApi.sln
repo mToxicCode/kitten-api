@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KittenApi", "KittenApi\KittenApi.csproj", "{7978903B-687E-4F89-B392-026A1D0EC22B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{B1A702C1-0C3B-41A3-A850-D7550B26BDE5}"
+ProjectSection(SolutionItems) = preProject
+	Dockerfile = Dockerfile
+	.dockerignore = .dockerignore
+	.gitignore = .gitignore
+	LICENSE = LICENSE
+	README.md = README.md
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EE994E4F-A5F1-481A-B47F-C19C920FE8D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7978903B-687E-4F89-B392-026A1D0EC22B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7978903B-687E-4F89-B392-026A1D0EC22B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7978903B-687E-4F89-B392-026A1D0EC22B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7978903B-687E-4F89-B392-026A1D0EC22B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7978903B-687E-4F89-B392-026A1D0EC22B} = {EE994E4F-A5F1-481A-B47F-C19C920FE8D0}
+	EndGlobalSection
+EndGlobal
