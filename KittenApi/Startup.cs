@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using KittenApi.Infrastructure.Extensions;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ namespace KittenApi
         {
             var type = typeof(Startup);
             services.AddControllers();
+            services.AddSwagger();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -25,6 +27,16 @@ namespace KittenApi
             app.UseRouting();
             app.UseEndpoints(endpoints
                 => endpoints.MapControllers());
+            
+            app
+                .UseSwagger()
+                .UseSwaggerUI(opt
+                    =>
+                {
+                    opt.SwaggerEndpoint("/swagger/v1/swagger.json", "TOPCourseworkBL");
+                    opt.RoutePrefix = string.Empty;
+                });
+
         }
     }
 }
