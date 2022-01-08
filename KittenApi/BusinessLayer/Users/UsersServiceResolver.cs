@@ -13,8 +13,7 @@ namespace KittenApi.BusinessLayer.Users
 
         public UsersServiceResolver(UsersHandlersProvider provider)
             => _provider = provider;
-
-
+        
         public Task<GetUsersResponse> GetUsersAsync(CancellationToken token)
             => _provider.GetUsersHandler.HandleAsync(token);
 
@@ -24,7 +23,7 @@ namespace KittenApi.BusinessLayer.Users
         public async Task<GetUserResponse> GetUserAsync(long id, CancellationToken token)
             => await _provider.GetUserHandler.HandleAsync(id, token);
 
-        public async Task DeleteUserAsync(long id,CancellationToken token)
+        public async Task DeleteUserAsync(long id, CancellationToken token)
             => await _provider.DeleteUserHandler.HandleAsync(id, token);
     }
 }

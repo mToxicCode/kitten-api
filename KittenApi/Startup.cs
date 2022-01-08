@@ -1,4 +1,14 @@
-﻿using KittenApi.Infrastructure.Extensions;
+﻿using KittenApi.BusinessLayer.Abstractions;
+using KittenApi.BusinessLayer.Users;
+using KittenApi.BusinessLayer.Users.Handlers;
+using KittenApi.BusinessLayer.Users.Handlers.Create;
+using KittenApi.BusinessLayer.Users.Handlers.Delete;
+using KittenApi.BusinessLayer.Users.Handlers.Get;
+using KittenApi.Dtos;
+using KittenApi.Dtos.CreateUser;
+using KittenApi.Dtos.GetUser;
+using KittenApi.Dtos.GetUsers;
+using KittenApi.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -11,15 +21,21 @@ namespace KittenApi
         private readonly IConfiguration _configuration;
 
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
-        {
-            _configuration = configuration;
-        }
+            => _configuration = configuration;
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var type = typeof(Startup);
             services.AddControllers();
             services.AddSwagger();
+            services
+                .AddHttpContextAccessor()
+                .AddSingleton<HttpCancellationTokenAccessor>()
+                .AddSingleton<IUsersService, UsersServiceResolver>()
+                .AddSingleton<UsersHandlersProvider>()
+                .AddSingleton<IHandler<CreateUserRequest, CreateUserResponse>, CreateUserHandler>()
+                .AddSingleton<IHandler<long, GetUserResponse>, GetUserHandler>()
+                .AddSingleton<IHandler<GetUsersResponse>, GetUsersHandler>()
+                .AddSingleton<IHandler<long, Empty>, DeleteUserHandler>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -27,7 +43,6 @@ namespace KittenApi
             app.UseRouting();
             app.UseEndpoints(endpoints
                 => endpoints.MapControllers());
-            
             app
                 .UseSwagger()
                 .UseSwaggerUI(opt
@@ -36,7 +51,6 @@ namespace KittenApi
                     opt.SwaggerEndpoint("/swagger/v1/swagger.json", "TOPCourseworkBL");
                     opt.RoutePrefix = string.Empty;
                 });
-
         }
     }
 }
