@@ -18,20 +18,19 @@ namespace KittenApi.HttpControllers
             _accessor = accessor;
         }
 
-        [HttpPost("/api/v1/users")]
-        public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
-            => Ok(await _resolver.CreateUserAsync(request, _accessor.Token));
-
+        [HttpGet("/api/v1/users/{id:long}")]
+        public async Task<IActionResult> GetUser([Required] long id)
+            => Ok(await _resolver.GetUserAsync(id, _accessor.Token));
 
         [HttpGet("/api/v1/users")]
         public async Task<IActionResult> GetUsers()
             => Ok(await _resolver.GetUsersAsync(_accessor.Token));
-
-        [HttpGet("/api/v1/users/{id:int}")]
-        public async Task<IActionResult> GetUser([Required] long id)
-            => Ok(await _resolver.GetUserAsync(id, _accessor.Token));
-
-        [HttpDelete("/api/v1/users/{id:int}")]
+        
+        [HttpPost("/api/v1/users")]
+        public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
+            => Ok(await _resolver.CreateUserAsync(request, _accessor.Token));
+        
+        [HttpDelete("/api/v1/users/{id:long}")]
         public async Task<IActionResult> DeleteUser([Required] long id)
         {
             await _resolver.DeleteUserAsync(id, _accessor.Token);
