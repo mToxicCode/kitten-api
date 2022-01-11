@@ -12,13 +12,11 @@ namespace KittenApi.BusinessLayer.Users.Handlers.Get
         private readonly UsersRepository _repository;
 
         public GetUserHandler(UsersRepository repository)
-        {
-            _repository = repository;
-        }
+            => _repository = repository;
 
         public async Task<GetUserResponse> HandleAsync(long request, CancellationToken token)
         {
-            var result = await _repository.GetUserByIdAsync(new GetUserCmd(request),token);
+            var result = await _repository.GetUserByIdAsync(new GetUserCmd(request), token);
             return new GetUserResponse(result);
         }
     }

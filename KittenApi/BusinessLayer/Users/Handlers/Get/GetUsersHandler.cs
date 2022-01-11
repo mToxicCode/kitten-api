@@ -11,9 +11,7 @@ namespace KittenApi.BusinessLayer.Users.Handlers.Get
         private readonly UsersRepository _repository;
 
         public GetUsersHandler(UsersRepository repository)
-        {
-            _repository = repository;
-        }
+            => _repository = repository;
 
         public async Task<GetUsersResponse> HandleAsync(CancellationToken token)
         {
