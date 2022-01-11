@@ -4,6 +4,7 @@ using KittenApi.BusinessLayer.Users.Handlers;
 using KittenApi.BusinessLayer.Users.Handlers.Create;
 using KittenApi.BusinessLayer.Users.Handlers.Delete;
 using KittenApi.BusinessLayer.Users.Handlers.Get;
+using KittenApi.DataLayer.Extensions;
 using KittenApi.Dtos;
 using KittenApi.Dtos.CreateUser;
 using KittenApi.Dtos.GetUser;
@@ -25,6 +26,8 @@ namespace KittenApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Program));
+            services.AddDatabaseInfrastructure(_configuration);
             services.AddControllers();
             services.AddSwagger();
             services
@@ -51,6 +54,7 @@ namespace KittenApi
                     opt.SwaggerEndpoint("/swagger/v1/swagger.json", "TOPCourseworkBL");
                     opt.RoutePrefix = string.Empty;
                 });
+            app.Migrate();
         }
     }
 }

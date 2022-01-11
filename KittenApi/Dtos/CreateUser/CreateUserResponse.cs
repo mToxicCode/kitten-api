@@ -1,7 +1,3 @@
-namespace KittenApi.Dtos.CreateUser
-{
-    public class CreateUserResponse
-    {
-        public long Id { get; set; }
-    }
-}
+namespace KittenApi.Dtos.CreateUser;
+
+public record CreateUserResponse(long Id);
