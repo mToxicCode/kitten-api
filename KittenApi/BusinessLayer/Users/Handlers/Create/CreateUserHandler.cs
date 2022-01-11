@@ -22,7 +22,7 @@ namespace KittenApi.BusinessLayer.Users.Handlers.Create
         public async Task<CreateUserResponse> HandleAsync(CreateUserRequest request, CancellationToken token)
         {
             var result = await _repository.InsertNewUserAsync(_mapper.Map<InsertNewUserCmd>(request), token);
-            return new CreateUserResponse { Id = result };
+            return new CreateUserResponse( result);
         }
     }
 }

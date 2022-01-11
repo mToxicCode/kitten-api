@@ -15,10 +15,4 @@ public static class EnvironmentConstants
     public const string DatabaseConnectionLifetime = "DB_CONNECTION_LIFETIME";
 
     #endregion
-
-    #region Auth environment variables
-
-    public const string AuthKey = "AUTH_TOKEN";
-
-    #endregion
 }
