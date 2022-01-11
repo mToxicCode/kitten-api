@@ -1,7 +1,3 @@
-namespace KittenApi.Dtos.GetUser
-{
-    public class GetUserResponse
-    {
-        public User? User { get; set; }
-    }
-}
+namespace KittenApi.Dtos.GetUser;
+
+public record GetUserResponse(User? User);

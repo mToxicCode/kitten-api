@@ -2,9 +2,9 @@ namespace KittenApi.Dtos
 {
     public enum UserRoles
     {
-        Default,
-        Tutor,
-        Student,
-        Administrator
+        Default = 1,
+        Student = 2,
+        Tutor = 3,
+        Administrator = 4
     }
 }
